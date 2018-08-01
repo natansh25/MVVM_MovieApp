@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#292f4e</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--#141414 status bar color
+    #000000 app bar color
+    app bar text background #0B1F28
+    app bar text color #858F94-->
+</resources>
