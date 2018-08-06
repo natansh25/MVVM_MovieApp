@@ -27,6 +27,11 @@ public class MainViewModel extends AndroidViewModel {
     private LiveData<List<Result>> mDataFav;
     private Respository mRespository;
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        Log.d("xxx","data cleared");
+    }
 
     public MainViewModel(@NonNull Application application) {
         super(application);

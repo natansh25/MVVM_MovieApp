@@ -25,6 +25,7 @@ public class RemoteNetworkCall {
 
 
     public static void fetchData(String sort) {
+        Log.d("RemoteSort",sort);
 
 
         ApiInterface apiService =
@@ -56,6 +57,8 @@ public class RemoteNetworkCall {
 
 
     }
+
+
 
     public static LiveData<List<Result>> getIntData() {
         return data;

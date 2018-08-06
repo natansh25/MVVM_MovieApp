@@ -19,7 +19,7 @@ public class DetailViewModel extends AndroidViewModel {
 
     public DetailViewModel(@NonNull Application application) {
         super(application);
-        mRespository = new Respository(application);
+        //mRespository = new Respository(application);
     }
 
     public void insert(Result result) {
