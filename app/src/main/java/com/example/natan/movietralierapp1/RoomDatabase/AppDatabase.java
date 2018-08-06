@@ -23,6 +23,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "movie_database")
+                            .allowMainThreadQueries()
                             .fallbackToDestructiveMigration()
                             .build();
                 }

@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ import com.example.natan.movietralierapp1.service.ApiInterface;
 import com.facebook.stetho.Stetho;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mrecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    private int selected = 0;
 
     public static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "animal_image_transition_name";
 
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     // onSaveinstance varibale
 
     private final static String MENU_SELECTED = "selected";
-    private int selected = -1;
 
 
     @Override
@@ -77,24 +79,23 @@ public class MainActivity extends AppCompatActivity {
         mrecyclerView.setNestedScrollingEnabled(false);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
+        if (savedInstanceState == null) {
+            populateUI(selected);
 
-        viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
-            @Override
-            public void onChanged(@Nullable List<Result> results) {
-                setupRecyclerView(results);
-            }
-        });
-
-        viewModel.mLiveDataFav().observe(this, new Observer<List<Result>>() {
-            @Override
-            public void onChanged(@Nullable List<Result> results) {
-                Toast.makeText(MainActivity.this, "hurray", Toast.LENGTH_SHORT).show();
-                setupRecyclerView(results);
-            }
-        });
+        }
+        else
+        {
+            selected = savedInstanceState.getInt(MENU_SELECTED);
+            populateUI(selected);
+        }
 
 
-       /* RemoteNetworkCall.getIntData().observe(this, new Observer<List<Result>>() {
+
+
+
+
+
+      /*  viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
             @Override
             public void onChanged(@Nullable List<Result> results) {
                 setupRecyclerView(results);
@@ -102,42 +103,40 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-        //loadDefault("popular");
-        //build("popular");
+    }
 
-        //onSavedInstance loading if exist
+    private void populateUI(int i) {
 
-       /* if (savedInstanceState != null) {
-            selected = savedInstanceState.getInt(MENU_SELECTED);
 
-            if (selected == -1) {
+        viewModel.mLiveData().removeObservers(this);
+       // viewModel.mLiveDataFav().removeObservers(this);
 
-                loadDefault("top_rated");
+        switch (i) {
+            case 0:
 
-            } else if (selected == R.id.highest_Rated) {
+                viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Result> results) {
+                        setupRecyclerView(results);
+                    }
+                });
 
-                loadDefault("popular");
-            } else {
+                break;
 
-                loadDefault("top_rated");
-            }
+            case 1:
 
-        }*/
+                viewModel.mLiveDataFav().observe(this, new Observer<List<Result>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Result> results) {
+                        setupRecyclerView(results);
+                    }
+                });
+
+
+        }
 
 
     }
-
-   /* private void setUpViewModel() {
-
-
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        Object obj=viewModel.getAllMovies();
-
-
-        //setupRecyclerView(viewModel.getAllMovies());
-
-
-    }*/
 
     private void setupRecyclerView(List<Result> results) {
 
@@ -165,89 +164,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loadDefault(String sort) {
-
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-        Call<Example> call = apiService.getMovies(sort, ApiClient.api_key);
-        call.enqueue(new Callback<Example>() {
-            @Override
-            public void onResponse(Call<Example> call, final Response<Example> response) {
-                int statusCode = response.code();
-                List<Result> results = response.body().getResults();
-                mRecyclerMovie = new RecyclerMovie(MainActivity.this, results, new RecyclerMovie.ListItemClickListener() {
-                    @Override
-                    public void onListItemClick(Result movie) {
-
-                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                        intent.putExtra("data", movie);
-                        startActivity(intent);
-
-
-                    }
-                });
-
-
-                mrecyclerView.setAdapter(mRecyclerMovie);
-                mRecyclerMovie.notifyDataSetChanged();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Example> call, Throwable t) {
-
-            }
-        });
-
-
-    }
-
-
-    //Creating inner class for Async Task
-
-    /*public class MovieDbQUeryTask extends AsyncTask<URL, Void, List<Movie>> {
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
-
-
-        @Override
-        protected List<Movie> doInBackground(URL... urls) {
-
-            List<Movie> result = NetworkUtils.fetchMovieData(urls[0]);
-            return result;
-        }
-
-
-        @Override
-        protected void onPostExecute(List<Movie> movies) {
-
-
-            mProgressBar.setVisibility(View.INVISIBLE);
-            mRecyclerMovie = new RecyclerMovie(MainActivity.this, movies, new RecyclerMovie.ListItemClickListener() {
-                @Override
-                public void onListItemClick(Movie movie, ImageView imageView) {
-                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    intent.putExtra("data", movie);
-                    intent.putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(imageView));
-
-                    startActivity(intent);
-
-                }
-            });
-
-            mrecyclerView.setAdapter(mRecyclerMovie);
-            mRecyclerMovie.notifyDataSetChanged();
-
-        }
-    }
-*/
     //onsaveInstanceState
 
     @Override
@@ -275,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 //build("top_rated");
                 // loadDefault("popular");
                 viewModel.getTopRated();
-                selected = id;
+                selected = 0;
 
                 break;
 
@@ -283,21 +199,21 @@ public class MainActivity extends AppCompatActivity {
                 //build("popular");
                 //loadDefault("top_rated");
                 viewModel.getPopular();
-                selected = id;
+                selected = 0;
                 break;
 
             case R.id.fav:
 
+
                 viewModel.getFavData();
+                selected = 1;
+                populateUI(selected);
+
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    /*private URL build(String sort) {
-        URL final_Url = NetworkUtils.buildURl(sort);
-        new MovieDbQUeryTask().execute(final_Url);
-        return final_Url;
-    }*/
+
 }

@@ -33,6 +33,7 @@ public class Respository {
 
     public LiveData<List<Result>> mLiveData() {
         mData = RemoteNetworkCall.getIntData();
+
         return mData;
     }
 

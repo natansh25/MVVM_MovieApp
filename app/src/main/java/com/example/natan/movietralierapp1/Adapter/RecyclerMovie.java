@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import com.example.natan.movietralierapp1.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -69,6 +70,16 @@ public class RecyclerMovie extends RecyclerView.Adapter<RecyclerMovie.MyViewHold
     @Override
     public int getItemCount() {
         return mMovieList.size();
+    }
+
+    public void clearList() {
+        if (mMovieList == null) {
+            mMovieList = new ArrayList<>();
+        } else {
+            int itemCount = mMovieList.size();
+            mMovieList.clear();
+            notifyItemRangeRemoved(0, itemCount);
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

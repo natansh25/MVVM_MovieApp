@@ -3,6 +3,7 @@ package com.example.natan.movietralierapp1.ViewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -41,6 +42,9 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Result>> mLiveDataFav() {
+        if (mDataFav == null) {
+            mDataFav = new MutableLiveData<>();
+        }
         mDataFav = mRespository.mLiveDataFav();
         return mDataFav;
     }
@@ -56,6 +60,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public void getFavData() {
         mRespository.getFavData();
-    }
 
+
+    }
 }
