@@ -17,7 +17,7 @@ public interface MovieDao {
     void insert(MoviesResult result);
 
 
-    @Query("SELECT * FROM MoviesResult")
+    @Query("SELECT * FROM movie_table")
     LiveData<List<MoviesResult>> getAllFav();
 
 
