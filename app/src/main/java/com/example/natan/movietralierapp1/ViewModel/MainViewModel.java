@@ -9,22 +9,14 @@ import android.util.Log;
 
 
 import com.example.natan.movietralierapp1.Respository;
-import com.example.natan.movietralierapp1.database.RemoteNetworkCall;
-import com.example.natan.movietralierapp1.model.Example;
-import com.example.natan.movietralierapp1.model.Result;
-import com.example.natan.movietralierapp1.service.ApiClient;
-import com.example.natan.movietralierapp1.service.ApiInterface;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainViewModel extends AndroidViewModel {
 
-    private LiveData<List<Result>> mData;
-    private LiveData<List<Result>> mDataFav;
+    private LiveData<List<MoviesResult>> mData;
+    private LiveData<List<MoviesResult>> mDataFav;
     private Respository mRespository;
 
     @Override
@@ -41,12 +33,12 @@ public class MainViewModel extends AndroidViewModel {
 
     }
 
-    public LiveData<List<Result>> mLiveData() {
+    public LiveData<List<MoviesResult>> mLiveData() {
         mData = mRespository.mLiveData();
         return mData;
     }
 
-    public LiveData<List<Result>> mLiveDataFav() {
+    public LiveData<List<MoviesResult>> mLiveDataFav() {
         if (mDataFav == null) {
             mDataFav = new MutableLiveData<>();
         }

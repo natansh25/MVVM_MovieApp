@@ -6,13 +6,13 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.example.natan.movietralierapp1.Respository;
-import com.example.natan.movietralierapp1.model.Result;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 
 import java.util.List;
 
 public class DetailViewModel extends AndroidViewModel {
 
-    LiveData<List<Result>> mData;
+    LiveData<List<MoviesResult>> mData;
 
     private Respository mRespository;
 
@@ -22,11 +22,11 @@ public class DetailViewModel extends AndroidViewModel {
         //mRespository = new Respository(application);
     }
 
-    public void insert(Result result) {
+    public void insert(MoviesResult result) {
         mRespository.insert(result);
     }
 
-    public LiveData<List<Result>> getAllFav() {
+    public LiveData<List<MoviesResult>> getAllFav() {
         return mData;
     }
 

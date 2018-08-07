@@ -3,13 +3,11 @@ package com.example.natan.movietralierapp1;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.natan.movietralierapp1.RoomDatabase.AppDatabase;
 import com.example.natan.movietralierapp1.RoomDatabase.MovieDao;
 import com.example.natan.movietralierapp1.database.RemoteNetworkCall;
-import com.example.natan.movietralierapp1.model.Result;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 
 import java.util.List;
 
@@ -17,8 +15,8 @@ public class Respository {
 
     private MovieDao mMovieDao;
 
-    private LiveData<List<Result>> mData;
-    private LiveData<List<Result>> mDataFav;
+    private LiveData<List<MoviesResult>> mData;
+    private LiveData<List<MoviesResult>> mDataFav;
 
 
     public Respository(Application application) {
@@ -31,7 +29,7 @@ public class Respository {
 
     }
 
-    public LiveData<List<Result>> mLiveData() {
+    public LiveData<List<MoviesResult>> mLiveData() {
         mData = RemoteNetworkCall.getIntData();
 
         return mData;
@@ -42,7 +40,7 @@ public class Respository {
 
     }
 
-    public LiveData<List<Result>> mLiveDataFav() {
+    public LiveData<List<MoviesResult>> mLiveDataFav() {
 
         return mDataFav;
     }
@@ -59,13 +57,13 @@ public class Respository {
     //----------------------------------------------------------------------------------
 
 
-    public void insert(Result result) {
+    public void insert(MoviesResult result) {
 
         new insertAsyncTask(mMovieDao).execute(result);
     }
 
 
-    class insertAsyncTask extends AsyncTask<Result, Void, Void> {
+    class insertAsyncTask extends AsyncTask<MoviesResult, Void, Void> {
 
         private MovieDao mMovieDao;
 
@@ -75,7 +73,7 @@ public class Respository {
         }
 
         @Override
-        protected Void doInBackground(Result... results) {
+        protected Void doInBackground(MoviesResult... results) {
 
             mMovieDao.insert(results[0]);
 

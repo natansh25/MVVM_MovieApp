@@ -1,4 +1,4 @@
-package com.example.natan.movietralierapp1.model;
+package com.example.natan.movietralierapp1.model.Movies;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Entity(tableName = "movie_table")
-public class Result implements Parcelable {
+public class MoviesResult implements Parcelable {
 
 
     @SerializedName("vote_count")
@@ -201,10 +201,10 @@ public class Result implements Parcelable {
         dest.writeString(this.releaseDate);
     }
 
-    public Result() {
+    public MoviesResult() {
     }
 
-    protected Result(Parcel in) {
+    protected MoviesResult(Parcel in) {
         this.voteCount = (Integer) in.readValue(Integer.class.getClassLoader());
         this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         this.video = (Boolean) in.readValue(Boolean.class.getClassLoader());
@@ -222,15 +222,15 @@ public class Result implements Parcelable {
         this.releaseDate = in.readString();
     }
 
-    public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>() {
+    public static final Parcelable.Creator<MoviesResult> CREATOR = new Parcelable.Creator<MoviesResult>() {
         @Override
-        public Result createFromParcel(Parcel source) {
-            return new Result(source);
+        public MoviesResult createFromParcel(Parcel source) {
+            return new MoviesResult(source);
         }
 
         @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
+        public MoviesResult[] newArray(int size) {
+            return new MoviesResult[size];
         }
     };
 }

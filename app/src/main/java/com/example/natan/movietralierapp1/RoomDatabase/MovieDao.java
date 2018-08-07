@@ -6,7 +6,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.example.natan.movietralierapp1.model.Result;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import java.util.List;
 public interface MovieDao {
 
     @Insert
-    void insert(Result result);
+    void insert(MoviesResult result);
 
 
-    @Query("SELECT * FROM movie_table")
-    LiveData<List<Result>> getAllFav();
+    @Query("SELECT * FROM MoviesResult")
+    LiveData<List<MoviesResult>> getAllFav();
 
 
 }

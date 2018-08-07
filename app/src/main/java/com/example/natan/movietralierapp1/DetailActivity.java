@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
-import com.example.natan.movietralierapp1.model.Result;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.example.natan.movietralierapp1.picasso.RoundedTransformation;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -36,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.btn_fav)
     Button mBtnFav;
     DetailViewModel mDetailViewModel;
-    Result mResult;
+    MoviesResult mResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         //getActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Result movie = getIntent().getParcelableExtra("data");
+        MoviesResult movie = getIntent().getParcelableExtra("data");
         mResult = movie;
         String name = getIntent().getExtras().getString(MainActivity.EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
         Float rating = Float.valueOf(movie.getVoteCount());

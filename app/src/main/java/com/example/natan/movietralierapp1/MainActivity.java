@@ -1,48 +1,29 @@
 package com.example.natan.movietralierapp1;
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.natan.movietralierapp1.Adapter.Movie;
 import com.example.natan.movietralierapp1.Adapter.RecyclerMovie;
-import com.example.natan.movietralierapp1.Network.NetworkUtils;
 import com.example.natan.movietralierapp1.ViewModel.MainViewModel;
-import com.example.natan.movietralierapp1.database.RemoteNetworkCall;
-import com.example.natan.movietralierapp1.model.Example;
-import com.example.natan.movietralierapp1.model.Result;
-import com.example.natan.movietralierapp1.service.ApiClient;
-import com.example.natan.movietralierapp1.service.ApiInterface;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.facebook.stetho.Stetho;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -95,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-      /*  viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
+      /*  viewModel.mLiveData().observe(this, new Observer<List<MoviesResult>>() {
             @Override
-            public void onChanged(@Nullable List<Result> results) {
+            public void onChanged(@Nullable List<MoviesResult> results) {
                 setupRecyclerView(results);
             }
         });*/
@@ -114,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
         switch (i) {
             case 0:
 
-                viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
+                viewModel.mLiveData().observe(this, new Observer<List<MoviesResult>>() {
                     @Override
-                    public void onChanged(@Nullable List<Result> results) {
+                    public void onChanged(@Nullable List<MoviesResult> results) {
                         setupRecyclerView(results);
                     }
                 });
@@ -125,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
             case 1:
 
-                viewModel.mLiveDataFav().observe(this, new Observer<List<Result>>() {
+                viewModel.mLiveDataFav().observe(this, new Observer<List<MoviesResult>>() {
                     @Override
-                    public void onChanged(@Nullable List<Result> results) {
+                    public void onChanged(@Nullable List<MoviesResult> results) {
                         setupRecyclerView(results);
                     }
                 });
@@ -138,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setupRecyclerView(List<Result> results) {
+    private void setupRecyclerView(List<MoviesResult> results) {
 
         if (results != null) {
 
             mRecyclerMovie = new RecyclerMovie(MainActivity.this, results, new RecyclerMovie.ListItemClickListener() {
                 @Override
-                public void onListItemClick(Result movie) {
+                public void onListItemClick(MoviesResult movie) {
 
                     Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                     intent.putExtra("data", movie);

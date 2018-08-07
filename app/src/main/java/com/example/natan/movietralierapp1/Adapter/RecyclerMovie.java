@@ -1,8 +1,6 @@
 
 package com.example.natan.movietralierapp1.Adapter;
 
-import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.natan.movietralierapp1.MainActivity;
-import com.example.natan.movietralierapp1.model.Result;
+import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.example.natan.movietralierapp1.picasso.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 
@@ -29,7 +27,7 @@ import butterknife.ButterKnife;
 public class RecyclerMovie extends RecyclerView.Adapter<RecyclerMovie.MyViewHolder> {
 
 
-    private List<Result> mMovieList;
+    private List<MoviesResult> mMovieList;
     //Implementing on click listner
     final private ListItemClickListener mOnClickListener;
 
@@ -37,11 +35,11 @@ public class RecyclerMovie extends RecyclerView.Adapter<RecyclerMovie.MyViewHold
 
     public interface ListItemClickListener {
 
-        void onListItemClick(Result movie);
+        void onListItemClick(MoviesResult movie);
     }
 
 
-    public RecyclerMovie(MainActivity mainActivity, List<Result> movieList, ListItemClickListener listener) {
+    public RecyclerMovie(MainActivity mainActivity, List<MoviesResult> movieList, ListItemClickListener listener) {
         mMovieList = movieList;
         mOnClickListener = listener;
     }
@@ -58,7 +56,7 @@ public class RecyclerMovie extends RecyclerView.Adapter<RecyclerMovie.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Result movie = mMovieList.get(position);
+        MoviesResult movie = mMovieList.get(position);
 
         Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
         // holder.bind(mMovieList.get(position), mOnClickListener);
@@ -100,7 +98,7 @@ public class RecyclerMovie extends RecyclerView.Adapter<RecyclerMovie.MyViewHold
         public void onClick(View v) {
 
             int adapterPosition = getAdapterPosition();
-            Result result = mMovieList.get(adapterPosition);
+            MoviesResult result = mMovieList.get(adapterPosition);
             mOnClickListener.onListItemClick(result);
 
 
