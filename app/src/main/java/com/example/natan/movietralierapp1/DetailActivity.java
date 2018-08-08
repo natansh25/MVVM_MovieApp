@@ -1,18 +1,25 @@
 package com.example.natan.movietralierapp1;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
+import com.example.natan.movietralierapp1.ViewModel.DetailViewModelFactory;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
+import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
 import com.example.natan.movietralierapp1.picasso.RoundedTransformation;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     Button mBtnFav;
     DetailViewModel mDetailViewModel;
     MoviesResult mResult;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +52,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         postponeEnterTransition();
-        mDetailViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
 
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,6 +61,10 @@ public class DetailActivity extends AppCompatActivity {
         mResult = movie;
         String name = getIntent().getExtras().getString(MainActivity.EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
         Float rating = Float.valueOf(movie.getVoteCount());
+        DetailViewModelFactory factory = new DetailViewModelFactory(mResult.getId());
+
+
+        mDetailViewModel = ViewModelProviders.of(this, factory).get(DetailViewModel.class);
         Float cal = (5 * rating) / 10;
 
         mRatingbar.setRating(cal);
@@ -77,6 +88,14 @@ public class DetailActivity extends AppCompatActivity {
         txt_Plot.setText(movie.getOverview());
         /*txt_Rating.setText(movie.getVoteAverage() + "/10");*/
         txt_Release.setText(movie.getReleaseDate());
+
+
+        mDetailViewModel.getAllReviews().observe(this, new Observer<List<ReviewResult>>() {
+            @Override
+            public void onChanged(@Nullable List<ReviewResult> reviewResults) {
+                Log.d("uuu", String.valueOf(reviewResults));
+            }
+        });
 
 
     }

@@ -3,11 +3,14 @@ package com.example.natan.movietralierapp1;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.natan.movietralierapp1.RoomDatabase.AppDatabase;
 import com.example.natan.movietralierapp1.RoomDatabase.MovieDao;
 import com.example.natan.movietralierapp1.database.RemoteNetworkCall;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
+import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
+import com.example.natan.movietralierapp1.model.Trailer.TrailerResult;
 
 import java.util.List;
 
@@ -17,8 +20,12 @@ public class Respository {
 
     private LiveData<List<MoviesResult>> mData;
     private LiveData<List<MoviesResult>> mDataFav;
+    private int movieID;
+    private LiveData<List<ReviewResult>> mReviewResult;
+    private LiveData<List<TrailerResult>> mTrailerResult;
 
 
+    // constructor for movie
     public Respository(Application application) {
 
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -29,11 +36,30 @@ public class Respository {
 
     }
 
+    // constructor for review and trailer
+
+    public Respository(int movie1ID) {
+        Log.d("uuuRespo", String.valueOf(movie1ID));
+        this.movieID = movie1ID;
+        RemoteNetworkCall.fetchMovieReview(movieID);
+
+    }
+
+
+    // Methods for MainActivity
+
     public LiveData<List<MoviesResult>> mLiveData() {
         mData = RemoteNetworkCall.getIntData();
 
         return mData;
     }
+
+    public LiveData<List<ReviewResult>> mReviewLiveData() {
+        mReviewResult = RemoteNetworkCall.getReviewsData();
+
+        return mReviewResult;
+    }
+
 
     public void getFavData() {
         mDataFav = mMovieDao.getAllFav();
@@ -80,5 +106,8 @@ public class Respository {
             return null;
         }
     }
+
+    //Methods for Detail Activity
+
 
 }
