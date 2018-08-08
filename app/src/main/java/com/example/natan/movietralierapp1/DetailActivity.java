@@ -2,6 +2,8 @@ package com.example.natan.movietralierapp1;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.natan.movietralierapp1.Adapter.MovieTrailerAdapter;
+import com.example.natan.movietralierapp1.Network.NetworkUtils;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModelFactory;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
@@ -121,6 +124,15 @@ public class DetailActivity extends AppCompatActivity {
                 mMovieTrailerAdapter = new MovieTrailerAdapter(trailerResults, new MovieTrailerAdapter.ListItemClickListener() {
                     @Override
                     public void onListItemClick(TrailerResult movieTrailer) {
+
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        intent.setData(Uri.parse("https://www.youtube.com/watch?v="+movieTrailer.getKey()));
+                        startActivity(intent);
+
+                        // https://www.youtube.com/watch?v=Z5ezsReZcxU
+
 
                     }
                 });

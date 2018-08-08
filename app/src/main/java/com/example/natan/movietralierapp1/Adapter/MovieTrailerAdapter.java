@@ -52,7 +52,7 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
 
         Picasso.get()
                 .load("http://img.youtube.com/vi/" + movieTrailer.getKey() + "/0.jpg")
-                
+
                 .transform(new RoundedTransformation(14, 0))
                 .into(holder.img);
 
