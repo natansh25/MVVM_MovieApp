@@ -15,6 +15,7 @@ import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModelFactory;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
+import com.example.natan.movietralierapp1.model.Trailer.TrailerResult;
 import com.example.natan.movietralierapp1.picasso.RoundedTransformation;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -94,6 +95,13 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<ReviewResult> reviewResults) {
                 Log.d("reviewsxxx", String.valueOf(reviewResults));
+            }
+        });
+
+        mDetailViewModel.getAllTrailers().observe(this, new Observer<List<TrailerResult>>() {
+            @Override
+            public void onChanged(@Nullable List<TrailerResult> trailerResults) {
+                Log.d("trailerxxx", String.valueOf(trailerResults));
             }
         });
 

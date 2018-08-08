@@ -39,9 +39,9 @@ public class Respository {
     // constructor for review and trailer
 
     public Respository(int movie1ID) {
-        Log.d("uuuRespo", String.valueOf(movie1ID));
         this.movieID = movie1ID;
         RemoteNetworkCall.fetchMovieReview(movieID);
+        RemoteNetworkCall.fetchMovieTrailer(movieID);
 
     }
 
@@ -52,12 +52,6 @@ public class Respository {
         mData = RemoteNetworkCall.getIntData();
 
         return mData;
-    }
-
-    public LiveData<List<ReviewResult>> mReviewLiveData() {
-        mReviewResult = RemoteNetworkCall.getReviewsData();
-
-        return mReviewResult;
     }
 
 
@@ -108,6 +102,19 @@ public class Respository {
     }
 
     //Methods for Detail Activity
+
+
+    public LiveData<List<ReviewResult>> mReviewLiveData() {
+        mReviewResult = RemoteNetworkCall.getReviewsData();
+
+        return mReviewResult;
+    }
+
+    public LiveData<List<TrailerResult>> mTrailerLiveData() {
+        mTrailerResult = RemoteNetworkCall.getTrailerData();
+
+        return mTrailerResult;
+    }
 
 
 }

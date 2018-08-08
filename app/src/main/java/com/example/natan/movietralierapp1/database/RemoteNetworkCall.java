@@ -10,6 +10,7 @@ import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
 import com.example.natan.movietralierapp1.model.Reviews.Reviews;
 import com.example.natan.movietralierapp1.model.Trailer.TrailerResult;
+import com.example.natan.movietralierapp1.model.Trailer.Trailers;
 import com.example.natan.movietralierapp1.service.ApiClient;
 import com.example.natan.movietralierapp1.service.ApiInterface;
 
@@ -27,10 +28,10 @@ public class RemoteNetworkCall {
     private static MutableLiveData<List<TrailerResult>> dataTrailer = new MutableLiveData<>();
 
 
-    //-------fetching data for movie details popular / H-rated
-    public static void fetchData(String sort) {
-        Log.d("RemoteSort", sort);
+    //-------fetching data for movie details popular / H-rated------------------------------------
 
+
+    public static void fetchData(String sort) {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -45,7 +46,7 @@ public class RemoteNetworkCall {
 
                 data.postValue(results);
 
-                //Log.d("RemoteIN", String.valueOf(data));
+                //
 
 
             }
@@ -57,13 +58,12 @@ public class RemoteNetworkCall {
 
 
         });
-        Log.d("RemoteOUT", String.valueOf(data));
 
 
     }
 
 
-    //-------fetching data for movie reviews
+    //-------fetching data for movie reviews-------------------------------------------------------
 
     public static void fetchMovieReview(int id) {
 
@@ -82,8 +82,6 @@ public class RemoteNetworkCall {
                 dataReviews.postValue(results);
 
 
-
-
             }
 
             @Override
@@ -95,6 +93,39 @@ public class RemoteNetworkCall {
         });
 
 
+    }
+
+
+    // fetching data for movie trailers-----------------------------------------------------------
+
+
+    public static void fetchMovieTrailer(int id) {
+
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Trailers> call = apiService.getMovieTrailers(id, ApiClient.api_key);
+        call.enqueue(new Callback<Trailers>() {
+            @Override
+            public void onResponse(Call<Trailers> call, final Response<Trailers> response) {
+                int statusCode = response.code();
+                List<TrailerResult> results = response.body().getResults();
+
+
+                dataTrailer.postValue(results);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Trailers> call, Throwable t) {
+
+            }
+
+
+        });
+
 
     }
 
@@ -105,6 +136,10 @@ public class RemoteNetworkCall {
 
     public static LiveData<List<ReviewResult>> getReviewsData() {
         return dataReviews;
+    }
+
+    public static LiveData<List<TrailerResult>> getTrailerData() {
+        return dataTrailer;
     }
 
 

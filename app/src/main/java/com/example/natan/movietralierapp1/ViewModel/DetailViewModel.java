@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.natan.movietralierapp1.Respository;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
 import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
+import com.example.natan.movietralierapp1.model.Trailer.TrailerResult;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class DetailViewModel extends ViewModel {
 
     LiveData<List<MoviesResult>> mData;
     LiveData<List<ReviewResult>> mReviewData;
+    LiveData<List<TrailerResult>> mTrailerData;
 
     private Respository mRespository;
 
@@ -36,6 +38,11 @@ public class DetailViewModel extends ViewModel {
     public LiveData<List<ReviewResult>> getAllReviews() {
         mReviewData = mRespository.mReviewLiveData();
         return mReviewData;
+    }
+
+    public LiveData<List<TrailerResult>> getAllTrailers() {
+        mTrailerData = mRespository.mTrailerLiveData();
+        return mTrailerData;
     }
 
 
