@@ -5,12 +5,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.natan.movietralierapp1.Adapter.MovieTrailerAdapter;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModelFactory;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
@@ -46,6 +51,10 @@ public class DetailActivity extends AppCompatActivity {
     DetailViewModel mDetailViewModel;
     MoviesResult mResult;
     private int id;
+    // for Trailer
+    private RecyclerView mRecyclerView;
+    private MovieTrailerAdapter mMovieTrailerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +62,16 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.detailfinal);
         ButterKnife.bind(this);
         postponeEnterTransition();
+        mRecyclerView = findViewById(R.id.recycler_Trailers);
 
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // for trailer adapter----------------------------------------------------------------------
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         MoviesResult movie = getIntent().getParcelableExtra("data");
@@ -102,6 +118,13 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<TrailerResult> trailerResults) {
                 Log.d("trailerxxx", String.valueOf(trailerResults));
+                mMovieTrailerAdapter = new MovieTrailerAdapter(trailerResults, new MovieTrailerAdapter.ListItemClickListener() {
+                    @Override
+                    public void onListItemClick(TrailerResult movieTrailer) {
+
+                    }
+                });
+                mRecyclerView.setAdapter(mMovieTrailerAdapter);
             }
         });
 
