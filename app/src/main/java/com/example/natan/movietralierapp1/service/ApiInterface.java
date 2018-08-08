@@ -1,6 +1,7 @@
 package com.example.natan.movietralierapp1.service;
 
 import com.example.natan.movietralierapp1.model.Movies.Movies;
+import com.example.natan.movietralierapp1.model.Reviews.ReviewResult;
 import com.example.natan.movietralierapp1.model.Reviews.Reviews;
 
 import retrofit2.Call;

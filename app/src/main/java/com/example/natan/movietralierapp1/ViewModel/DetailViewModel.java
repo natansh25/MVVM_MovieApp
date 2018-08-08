@@ -22,7 +22,6 @@ public class DetailViewModel extends ViewModel {
     private Respository mRespository;
 
     public DetailViewModel(int id) {
-        Log.d("movieId", String.valueOf(id));
         mRespository = new Respository(id);
     }
 
@@ -35,6 +34,7 @@ public class DetailViewModel extends ViewModel {
     }
 
     public LiveData<List<ReviewResult>> getAllReviews() {
+        mReviewData = mRespository.mReviewLiveData();
         return mReviewData;
     }
 

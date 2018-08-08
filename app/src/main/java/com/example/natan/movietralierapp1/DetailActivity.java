@@ -93,7 +93,7 @@ public class DetailActivity extends AppCompatActivity {
         mDetailViewModel.getAllReviews().observe(this, new Observer<List<ReviewResult>>() {
             @Override
             public void onChanged(@Nullable List<ReviewResult> reviewResults) {
-                Log.d("uuu", String.valueOf(reviewResults));
+                Log.d("reviewsxxx", String.valueOf(reviewResults));
             }
         });
 

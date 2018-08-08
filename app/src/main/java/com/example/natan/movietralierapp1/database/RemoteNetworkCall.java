@@ -2,7 +2,6 @@ package com.example.natan.movietralierapp1.database;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.net.Uri;
 import android.util.Log;
 
 
@@ -20,7 +19,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Url;
 
 public class RemoteNetworkCall {
 
@@ -74,9 +72,6 @@ public class RemoteNetworkCall {
                 ApiClient.getClient().create(ApiInterface.class);
 
         Call<Reviews> call = apiService.getMovieReviews(id, ApiClient.api_key);
-        String url=call.request().url().toString();
-        Log.d("uuuReviews", url);
-
         call.enqueue(new Callback<Reviews>() {
             @Override
             public void onResponse(Call<Reviews> call, final Response<Reviews> response) {
@@ -87,7 +82,6 @@ public class RemoteNetworkCall {
                 dataReviews.postValue(results);
 
 
-                Log.d("yyy", String.valueOf(results));
 
 
             }
@@ -95,13 +89,11 @@ public class RemoteNetworkCall {
             @Override
             public void onFailure(Call<Reviews> call, Throwable t) {
 
-                Log.d("uuuFailer", String.valueOf(call));
-
             }
 
 
         });
-        Log.d("RemoteOUT", String.valueOf(data));
+
 
 
     }

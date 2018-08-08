@@ -62,4 +62,5 @@ public class Reviews {
         this.totalResults = totalResults;
     }
 
+
 }
