@@ -8,24 +8,13 @@
 
 
     <ImageView
-        android:id="@+id/app_bar_image"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:src="@android:drawable/sym_def_app_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
         android:id="@+id/image_poster"
         android:layout_width="140dp"
         android:layout_height="190dp"
 
 
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,19 +25,19 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:fontFamily="@font/fjalla"
-        android:textColor="#000000"
-        android:freezesText="true"
-        android:singleLine="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:fontFamily="@font/fjalla"
+        android:freezesText="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_poster"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar_image"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Ant-Man " />
 
     <TextView
@@ -69,7 +58,7 @@
         android:layout_width="237dp"
         android:layout_height="49dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:numStars="5"
         android:scaleX="0.5"
