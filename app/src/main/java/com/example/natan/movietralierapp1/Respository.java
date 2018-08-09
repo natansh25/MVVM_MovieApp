@@ -2,6 +2,7 @@ package com.example.natan.movietralierapp1;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -38,7 +39,10 @@ public class Respository {
 
     // constructor for review and trailer
 
-    public Respository(int movie1ID) {
+    public Respository(int movie1ID, Context context) {
+
+        AppDatabase db = AppDatabase.getDatabase(context);
+        mMovieDao = db.movieDao();
         this.movieID = movie1ID;
         RemoteNetworkCall.fetchMovieReview(movieID);
         RemoteNetworkCall.fetchMovieTrailer(movieID);

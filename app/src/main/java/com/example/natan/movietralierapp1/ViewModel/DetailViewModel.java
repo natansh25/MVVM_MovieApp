@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,8 +24,8 @@ public class DetailViewModel extends ViewModel {
 
     private Respository mRespository;
 
-    public DetailViewModel(int id) {
-        mRespository = new Respository(id);
+    public DetailViewModel(int id, Context context) {
+        mRespository = new Respository(id,context);
     }
 
     public void insert(MoviesResult result) {

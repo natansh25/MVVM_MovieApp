@@ -95,7 +95,7 @@ public class DetailActivity extends AppCompatActivity {
         mResult = movie;
         String name = getIntent().getExtras().getString(MainActivity.EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
         Float rating = Float.valueOf(movie.getVoteCount());
-        DetailViewModelFactory factory = new DetailViewModelFactory(mResult.getId());
+        DetailViewModelFactory factory = new DetailViewModelFactory(mResult.getId(),getApplicationContext());
 
 
         mDetailViewModel = ViewModelProviders.of(this, factory).get(DetailViewModel.class);

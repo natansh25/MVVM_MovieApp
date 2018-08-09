@@ -22,6 +22,7 @@ public class MoviesResult implements Parcelable {
     private Integer voteCount;
 
     @PrimaryKey
+
     @SerializedName("id")
     @Expose
     private Integer id;
