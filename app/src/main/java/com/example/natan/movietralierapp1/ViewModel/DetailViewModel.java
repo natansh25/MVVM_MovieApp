@@ -25,7 +25,8 @@ public class DetailViewModel extends ViewModel {
     private Respository mRespository;
 
     public DetailViewModel(int id, Context context) {
-        mRespository = new Respository(id,context);
+        mRespository = new Respository(id, context);
+
     }
 
     public void insert(MoviesResult result) {

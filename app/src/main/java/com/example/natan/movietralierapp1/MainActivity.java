@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Stetho.initializeWithDefaults(this);
         setSupportActionBar(mToolbar);
-        mCollapsingMain.setTitle("BlockBusterMovies");
+        mCollapsingMain.setTitle("bLOCKbUSTERmOVIES");
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);

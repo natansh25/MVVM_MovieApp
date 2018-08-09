@@ -40,7 +40,6 @@ public class Respository {
     // constructor for review and trailer
 
     public Respository(int movie1ID, Context context) {
-
         AppDatabase db = AppDatabase.getDatabase(context);
         mMovieDao = db.movieDao();
         this.movieID = movie1ID;
