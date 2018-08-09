@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingtoolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -338,8 +339,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_favorite_black_24dp"
 
+        app:backgroundTint="#ffab91"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 

@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +21,6 @@ import android.widget.TextView;
 
 import com.example.natan.movietralierapp1.Adapter.MovieReviewAdapter;
 import com.example.natan.movietralierapp1.Adapter.MovieTrailerAdapter;
-import com.example.natan.movietralierapp1.Network.NetworkUtils;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModelFactory;
 import com.example.natan.movietralierapp1.model.Movies.MoviesResult;
@@ -54,6 +55,10 @@ public class DetailActivity extends AppCompatActivity {
     Button mBtnFav;
     DetailViewModel mDetailViewModel;
     MoviesResult mResult;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.collapsingtoolbar)
+    CollapsingToolbarLayout mCollapsingtoolbar;
     private int id;
     // for Trailer
     private RecyclerView mRecyclerView;
@@ -65,6 +70,12 @@ public class DetailActivity extends AppCompatActivity {
 
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detailfinal);
@@ -72,6 +83,9 @@ public class DetailActivity extends AppCompatActivity {
         postponeEnterTransition();
         mRecyclerView = findViewById(R.id.recycler_Trailers);
         mRecyclerViewReview = findViewById(R.id.recycler_review);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -95,7 +109,8 @@ public class DetailActivity extends AppCompatActivity {
         mResult = movie;
         String name = getIntent().getExtras().getString(MainActivity.EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
         Float rating = Float.valueOf(movie.getVoteCount());
-        DetailViewModelFactory factory = new DetailViewModelFactory(mResult.getId(),getApplicationContext());
+        mCollapsingtoolbar.setTitle(mResult.getOriginalTitle());
+        DetailViewModelFactory factory = new DetailViewModelFactory(mResult.getId(), getApplicationContext());
 
 
         mDetailViewModel = ViewModelProviders.of(this, factory).get(DetailViewModel.class);
