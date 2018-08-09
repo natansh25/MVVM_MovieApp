@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.natan.movietralierapp1.Adapter.MovieReviewAdapter;
 import com.example.natan.movietralierapp1.Adapter.MovieTrailerAdapter;
@@ -51,14 +53,15 @@ public class DetailActivity extends AppCompatActivity {
     ImageView app_bar_img;
     @BindView(R.id.ratingbar)
     RatingBar mRatingbar;
-    @BindView(R.id.btn_fav)
-    Button mBtnFav;
+
     DetailViewModel mDetailViewModel;
     MoviesResult mResult;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.collapsingtoolbar)
     CollapsingToolbarLayout mCollapsingtoolbar;
+    @BindView(R.id.fab_detail)
+    FloatingActionButton mFabDetail;
     private int id;
     // for Trailer
     private RecyclerView mRecyclerView;
@@ -175,10 +178,10 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btn_fav)
+
+    @OnClick(R.id.fab_detail)
     public void onViewClicked() {
-
         mDetailViewModel.insert(mResult);
-
+        Toast.makeText(this, mResult.getOriginalTitle()+" "+"added to favorites!!", Toast.LENGTH_SHORT).show();
     }
 }

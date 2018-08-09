@@ -5,15 +5,16 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 
 import com.example.natan.movietralierapp1.Adapter.RecyclerMovie;
 import com.example.natan.movietralierapp1.ViewModel.MainViewModel;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mrecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.collapsing_main)
+    CollapsingToolbarLayout mCollapsingMain;
     private int selected = 0;
 
     public static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "animal_image_transition_name";
@@ -47,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.maintrial);
         ButterKnife.bind(this);
         Stetho.initializeWithDefaults(this);
+        setSupportActionBar(mToolbar);
+        mCollapsingMain.setTitle("BlockBusterMovies");
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
@@ -63,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             populateUI(selected);
 
-        }
-        else
-        {
+        } else {
             selected = savedInstanceState.getInt(MENU_SELECTED);
             populateUI(selected);
         }
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         viewModel.mLiveData().removeObservers(this);
-       // viewModel.mLiveDataFav().removeObservers(this);
+        // viewModel.mLiveDataFav().removeObservers(this);
 
         switch (i) {
             case 0:
