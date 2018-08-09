@@ -53,4 +53,5 @@ dependencies {
 
     //Arc Layout
     compile 'com.github.florent37:arclayout:1.0.3'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 }

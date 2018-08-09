@@ -50,6 +50,34 @@
             android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="Reviews"
+                android:textColor="#787A88"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_Trailers"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_Trailers"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -99,7 +127,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Rating"
-                android:textColor="#00695C"
+                android:textColor="#787A88"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/image_poster"
@@ -126,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Release Date"
-                android:textColor="#00695C"
+                android:textColor="#787A88"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/image_poster"
@@ -150,12 +178,12 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/karla_bold"
                 android:text="Sypnosis"
-                android:textColor="#757575"
+                android:textColor="#787A88"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_poster" />
 
@@ -166,7 +194,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/karla_regular"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textColor="#000000"
@@ -193,10 +221,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/karla_bold"
                 android:text="Trailers"
-                android:textColor="#757575"
+                android:textColor="#787A88"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -313,4 +342,5 @@
 
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+
 </android.support.design.widget.CoordinatorLayout>

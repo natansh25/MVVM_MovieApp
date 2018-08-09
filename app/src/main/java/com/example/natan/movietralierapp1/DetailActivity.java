@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.natan.movietralierapp1.Adapter.MovieReviewAdapter;
 import com.example.natan.movietralierapp1.Adapter.MovieTrailerAdapter;
 import com.example.natan.movietralierapp1.Network.NetworkUtils;
 import com.example.natan.movietralierapp1.ViewModel.DetailViewModel;
@@ -58,6 +59,10 @@ public class DetailActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private MovieTrailerAdapter mMovieTrailerAdapter;
 
+    //for review
+    private RecyclerView mRecyclerViewReview;
+    private MovieReviewAdapter mMovieReviewAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         postponeEnterTransition();
         mRecyclerView = findViewById(R.id.recycler_Trailers);
+        mRecyclerViewReview = findViewById(R.id.recycler_review);
 
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,6 +81,14 @@ public class DetailActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+        //for review adapter------------------------------------------------------------------------
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        manager.setAutoMeasureEnabled(true);
+        mRecyclerViewReview.setLayoutManager(manager);
+        mRecyclerViewReview.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+        mRecyclerViewReview.setItemAnimator(new DefaultItemAnimator());
 
 
         MoviesResult movie = getIntent().getParcelableExtra("data");
@@ -114,6 +128,9 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<ReviewResult> reviewResults) {
                 Log.d("reviewsxxx", String.valueOf(reviewResults));
+                mMovieReviewAdapter = new MovieReviewAdapter(reviewResults);
+                mRecyclerViewReview.setAdapter(mMovieReviewAdapter);
+
             }
         });
 
@@ -128,7 +145,7 @@ public class DetailActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Uri.parse("https://www.youtube.com/watch?v="+movieTrailer.getKey()));
+                        intent.setData(Uri.parse("https://www.youtube.com/watch?v=" + movieTrailer.getKey()));
                         startActivity(intent);
 
                         // https://www.youtube.com/watch?v=Z5ezsReZcxU

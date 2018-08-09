@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/img_View_trailer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="125dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_foreground" />
+        tools:srcCompat="@mipmap/ic_launcher_foreground" />
 </android.support.constraint.ConstraintLayout>
