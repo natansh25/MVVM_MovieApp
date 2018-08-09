@@ -11,6 +11,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
@@ -77,16 +78,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
-
-
-
-      /*  viewModel.mLiveData().observe(this, new Observer<List<MoviesResult>>() {
             @Override
-            public void onChanged(@Nullable List<MoviesResult> results) {
-                setupRecyclerView(results);
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
             }
-        });*/
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+                int id= (int) viewHolder.itemView.getTag();
+                viewModel.deleteData(id);
+
+            }
+        }).attachToRecyclerView(mrecyclerView);
+
+
+
+
+
+
+
 
 
     }

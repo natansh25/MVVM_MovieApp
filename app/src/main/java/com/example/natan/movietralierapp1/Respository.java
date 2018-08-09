@@ -77,12 +77,36 @@ public class Respository {
     }
 
 
+    public void deleteData(int id) {
+
+        new deleteAsyncTask(mMovieDao).execute(id);
+
+    }
+
+
     //----------------------------------------------------------------------------------
 
 
     public void insert(MoviesResult result) {
 
         new insertAsyncTask(mMovieDao).execute(result);
+    }
+
+
+    class deleteAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private MovieDao mMovieDao;
+
+
+        public deleteAsyncTask(MovieDao movieDao) {
+            mMovieDao = movieDao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            mMovieDao.delete(integers[0]);
+
+            return null;
+        }
     }
 
 

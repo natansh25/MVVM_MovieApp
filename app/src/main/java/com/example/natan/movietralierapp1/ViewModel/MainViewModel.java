@@ -60,4 +60,9 @@ public class MainViewModel extends AndroidViewModel {
 
 
     }
+
+    public void deleteData(int id) {
+
+        mRespository.deleteData(id);
+    }
 }

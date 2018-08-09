@@ -21,5 +21,10 @@ public interface MovieDao {
     @Query("SELECT * FROM movie_table")
     LiveData<List<MoviesResult>> getAllFav();
 
+    @Query("DELETE FROM movie_table WHERE id=:id")
+    void delete(int id);
+
+
+
 
 }
