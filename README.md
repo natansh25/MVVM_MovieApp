@@ -2,6 +2,7 @@
 This app is built with MVVM Design Pattern
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- [Room](https://developer.android.com/training/data-storage/room/)
 - [Repository](https://developer.android.com/jetpack/docs/guide)
 
 ## Features
@@ -18,7 +19,7 @@ You must provide your own API key in order to build the app. Generate you API_KE
 
 ## Screenshots
 
-![](screenshots/pop1.png)
+![](screenshots/pop2.png)
 
 ## Used libraries:
 
