@@ -10,10 +10,7 @@ public class DetailViewModelFactory extends ViewModelProvider.NewInstanceFactory
     private final int movieId;
     Context mContext;
 
-    /*public DetailViewModelFactory(int movieId, Context context) {
-        this.movieId = movieId;
-    }
-*/
+
 
     public DetailViewModelFactory(int movieId, Context context) {
         this.movieId = movieId;

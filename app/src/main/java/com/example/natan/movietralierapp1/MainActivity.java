@@ -187,16 +187,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.highest_Rated:
-                //build("top_rated");
-                // loadDefault("popular");
+
                 viewModel.getTopRated();
                 selected = 0;
 
                 break;
 
             case R.id.most_popular:
-                //build("popular");
-                //loadDefault("top_rated");
+
                 viewModel.getPopular();
                 selected = 0;
                 break;

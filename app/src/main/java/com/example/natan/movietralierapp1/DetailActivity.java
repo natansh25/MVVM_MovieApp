@@ -41,8 +41,6 @@ import butterknife.OnClick;
 public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.release)
     TextView txt_Release;
-    /*    @BindView(R.id.rating)
-        TextView txt_Rating;*/
     @BindView(R.id.title)
     TextView txt_Title;
     @BindView(R.id.image_poster)
@@ -91,7 +89,6 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // for trailer adapter----------------------------------------------------------------------
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -166,7 +163,6 @@ public class DetailActivity extends AppCompatActivity {
                         intent.setData(Uri.parse("https://www.youtube.com/watch?v=" + movieTrailer.getKey()));
                         startActivity(intent);
 
-                        // https://www.youtube.com/watch?v=Z5ezsReZcxU
 
 
                     }
