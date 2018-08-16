@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movies implements Parcelable {
+//
 
     @SerializedName("page")
     @Expose
