@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
                 viewModel.getTopRated();
                 selected = 0;
+                populateUI(selected);
 
                 break;
 
@@ -197,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
                 viewModel.getPopular();
                 selected = 0;
+                populateUI(selected);
                 break;
 
             case R.id.fav:
