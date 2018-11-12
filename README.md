@@ -4,6 +4,7 @@ This app is built with **MVVM** Design Pattern check out the **MVP and Kotlin** 
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Room](https://developer.android.com/training/data-storage/room/)
 - [Repository](https://developer.android.com/jetpack/docs/guide)
+- [RxJava2/RxAndroid](https://github.com/ReactiveX/RxAndroid)
 
 ## Features
 
