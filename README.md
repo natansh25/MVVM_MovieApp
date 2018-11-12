@@ -1,5 +1,5 @@
 # Popular Movies
-This app is built with MVVM Design Pattern
+This app is built with **MVVM** Design Pattern check out the **MVP and Kotlin** version of this app [here](https://github.com/natansh25/MVP_MovieApp) and simple **Kotlin version** [here](https://github.com/natansh25/Kotlin_MovieApp).
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Room](https://developer.android.com/training/data-storage/room/)
